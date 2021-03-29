@@ -16,7 +16,7 @@ namespace Entity
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures many-to-many relationship
-            modelBuilder.Entity<Clearance>().HasMany(c => c.Groups).WithMany(g => g.Clearances);
+            // modelBuilder.Entity<Clearance>().HasMany(c => c.Groups).WithMany(g => g.Clearances);
         }
     }
 }

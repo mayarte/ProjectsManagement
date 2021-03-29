@@ -1,18 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <DebugType>full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Entity\**" />
+    <Compile Remove="packages\**" />
     <Content Remove="Entity\**" />
+    <Content Remove="packages\**" />
     <EmbeddedResource Remove="Entity\**" />
+    <EmbeddedResource Remove="packages\**" />
     <None Remove="Entity\**" />
+    <None Remove="packages\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />

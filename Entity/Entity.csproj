@@ -55,6 +55,10 @@
     <Compile Include="Migrations\202103071233296_InitialCreate.designer.cs">
       <DependentUpon>202103071233296_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103291652301_fixRelationship.cs" />
+    <Compile Include="Migrations\202103291652301_fixRelationship.designer.cs">
+      <DependentUpon>202103291652301_fixRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyData\Clearance.cs" />
     <Compile Include="MyData\SystemUser.cs" />
@@ -70,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103071233296_InitialCreate.resx">
       <DependentUpon>202103071233296_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103291652301_fixRelationship.resx">
+      <DependentUpon>202103291652301_fixRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

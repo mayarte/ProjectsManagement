@@ -10,6 +10,5 @@ namespace Entity.MyData
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<SystemUserGroup> Groups { get; set; }
     }
 }
