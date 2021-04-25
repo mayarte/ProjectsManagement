@@ -128,6 +128,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClearancesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectDatasController.cs" />
+    <Compile Include="Controllers\ProjectPostsController.cs" />
     <Compile Include="Controllers\SystemUserGroupsController.cs" />
     <Compile Include="Controllers\SystemUsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +188,16 @@
     <Content Include="Views\SystemUserGroups\Details.cshtml" />
     <Content Include="Views\SystemUserGroups\Edit.cshtml" />
     <Content Include="Views\SystemUserGroups\Index.cshtml" />
+    <Content Include="Views\ProjectDatas\Create.cshtml" />
+    <Content Include="Views\ProjectDatas\Delete.cshtml" />
+    <Content Include="Views\ProjectDatas\Details.cshtml" />
+    <Content Include="Views\ProjectDatas\Edit.cshtml" />
+    <Content Include="Views\ProjectDatas\Index.cshtml" />
+    <Content Include="Views\ProjectPosts\Create.cshtml" />
+    <Content Include="Views\ProjectPosts\Delete.cshtml" />
+    <Content Include="Views\ProjectPosts\Details.cshtml" />
+    <Content Include="Views\ProjectPosts\Edit.cshtml" />
+    <Content Include="Views\ProjectPosts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -59,8 +59,17 @@
     <Compile Include="Migrations\202103291652301_fixRelationship.designer.cs">
       <DependentUpon>202103291652301_fixRelationship.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104252054297_ProjectRelatedStuff.cs" />
+    <Compile Include="Migrations\202104252054297_ProjectRelatedStuff.designer.cs">
+      <DependentUpon>202104252054297_ProjectRelatedStuff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyData\Clearance.cs" />
+    <Compile Include="MyData\PostTypesEnum.cs" />
+    <Compile Include="MyData\ProjectData.cs" />
+    <Compile Include="MyData\ProjectPost.cs" />
+    <Compile Include="MyData\ProjectStatusEnum.cs" />
+    <Compile Include="MyData\StateEnum.cs" />
     <Compile Include="MyData\SystemUser.cs" />
     <Compile Include="MyData\SystemUserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103291652301_fixRelationship.resx">
       <DependentUpon>202103291652301_fixRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104252054297_ProjectRelatedStuff.resx">
+      <DependentUpon>202104252054297_ProjectRelatedStuff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

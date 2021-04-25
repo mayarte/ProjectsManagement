@@ -1,10 +1,5 @@
 ﻿using Entity.MyData;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entity
 {
@@ -13,6 +8,9 @@ namespace Entity
         public DbSet<SystemUser> Users { get; set; }
         public DbSet<SystemUserGroup> Groups { get; set; }
         public DbSet<Clearance> Clearances { get; set; }
+        public DbSet<ProjectData> ProjectsData { get; set; }
+        public DbSet<ProjectPost> ProjectPosts { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures many-to-many relationship
