@@ -1,3 +1,34 @@
 ﻿@{
     ViewBag.Title = "الصفحة الرئيسية";
 }
+
+<h2>الرئيسية</h2>
+<div class="column">
+    @if (Session["User"] != null)
+    {
+        if (((List<string>)Session["MyClearance"]).Contains("Clearances"))
+        {
+            @Html.ActionLink("قائمة الصلاحيات", "index", "Clearances", null, new { @class = "myButtonGray" })
+            <p></p>
+        }
+        if (((List<string>)Session["MyClearance"]).Contains("UserGroups"))
+        {
+            @Html.ActionLink("المجموعات", "index", "UserGroups", null, new { @class = "myButtonGray" })
+            <p></p>
+        }
+        if (((List<string>)Session["MyClearance"]).Contains("Users"))
+        {
+            @Html.ActionLink("المستخدمين", "index", "Users", null, new { @class = "myButtonGray" })
+            <p></p>
+        }
+        if (((List<string>)Session["MyClearance"]).Contains("Students"))
+        {
+            @Html.ActionLink("الطلبة", "index", "Students", null, new { @class = "myButtonGray" })
+            <p></p>
+        }
+    }
+    else
+    {
+        @Html.ActionLink("تسجيل دخول", "Login", "Login", null, new { @class = "myButtonGray" })
+    }
+</div>

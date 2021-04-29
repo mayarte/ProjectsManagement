@@ -1,0 +1,194 @@
+﻿body {
+}
+
+.header {
+    background-color: #F1F1F1;
+    text-align: right;
+    padding: 20px;
+    direction: rtl;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #F1F1F1;
+    text-align: center;
+}
+
+/* The navbar container */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+    /* Navbar links */
+    .topnav a {
+        float: right;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        /* Links - change color on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+
+/* Create three equal columns that floats next to each other */
+.bodyContents {
+    text-align-last: right;
+    background-color: aliceblue;
+    float: right;
+    width: 100%;
+    padding: 15px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: right;
+    width: 33.33%;
+    padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+
+table.table {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+    table.table td, table.table th {
+        border: 1px solid #AAAAAA;
+        padding: 3px 2px;
+    }
+
+    table.table tbody td {
+        font-size: 13px;
+    }
+
+    table.table tr:nth-child(even) {
+        background: #D0E4F5;
+    }
+
+    table.table thead {
+        background: #1C6EA4;
+        background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+        background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+        background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+        border-bottom: 2px solid #444444;
+    }
+
+        table.table thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFFFFF;
+            border-left: 2px solid #D0E4F5;
+        }
+
+            table.table thead th:first-child {
+                border-left: none;
+            }
+
+    table.table tfoot {
+        font-size: 14px;
+        font-weight: bold;
+        color: #FFFFFF;
+        background: #D0E4F5;
+        background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+        background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+        background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+        border-top: 2px solid #444444;
+    }
+
+        table.table tfoot td {
+            font-size: 14px;
+        }
+
+        table.table tfoot .links {
+            text-align: right;
+        }
+
+            table.table tfoot .links a {
+                display: inline-block;
+                background: #1C6EA4;
+                color: #FFFFFF;
+                padding: 2px 8px;
+                border-radius: 5px;
+            }
+
+
+.myButtonGray {
+    -moz-box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    -webkit-box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    box-shadow: inset 0px 1px 3px 0px #91b8b3;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+    background: -moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background: -webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background: -o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background: -ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+    background-color: #768d87;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #566963;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 23px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #2b665e;
+}
+
+    .myButtonGray:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+        background: -moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+        background: -webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+        background: -o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+        background: -ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+        background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+        background-color: #6c7c7c;
+    }
+
+    .myButtonGray:active {
+        position: relative;
+        top: 1px;
+    }

@@ -5,34 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - برنامج ادارة وارشفة مشاريع الطلبة</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/MainCss.css?v=8")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("برنامج ادارة وارشفة مشاريع الطلبة", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("الرئيسية", "Index", "Home")</li>
-                    <li>@Html.ActionLink("حول", "About", "Home")</li>
-                    <li>@Html.ActionLink("معلومات الاتصال", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
+    <div class="header">
+        <table>
+            <tr>
+                <td width="80%">
+                    <img src="~/Images/project.png" width="100" />
+                    &nbsp;
+                    <span style="font-size:xx-large">
+                        برنامج ادارة وارشفة مشاريع الطلبة
+                    </span>
+                </td>
+                <td width="20%">
+                    @if (!string.IsNullOrEmpty(ViewBag.LoggeedUserName))
+                    {
+                        <div>
+                            <label>تم تسجيل الدخول بواسطة</label>
+                            @ViewBag.LoggeedUserName
+                            @Html.ActionLink("تسجيل خروج", "Logout", "Login", null, new { @class = "myButtonGray" })
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
     </div>
-    <div class="container body-content">
+    <ul class="topnav">
+        <li>@Html.ActionLink("الرئيسية", "Index", "Home")</li>
+        <li>@Html.ActionLink("حول", "About", "Home")</li>
+        <li>@Html.ActionLink("معلومات الاتصال", "Contact", "Home")</li>
+    </ul>
+
+    <div class="bodyContents">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year </p>
-        </footer>
+        <br />
+        <div class="footer">
+            <p>بواسطة تبارك حسين رباط - باشراف عقيل كامل &copy; @DateTime.Now.Year  &nbsp;</p>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
