@@ -8,6 +8,7 @@ namespace Entity.MyData
         public string Name { get; set; }
         public string Description { get; set; }
         public SystemUser ProposedBy { get; set; }
+        public StudyYear Year { get; set; }
         public DateTime? CreationDate { get; set; }
         public int ProgressPercentage { get; set; }
         public ProjectStatusEnum ProjectStatus { get; set; }

@@ -63,6 +63,14 @@
     <Compile Include="Migrations\202104252054297_ProjectRelatedStuff.designer.cs">
       <DependentUpon>202104252054297_ProjectRelatedStuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104292220531_yearsAddition.cs" />
+    <Compile Include="Migrations\202104292220531_yearsAddition.designer.cs">
+      <DependentUpon>202104292220531_yearsAddition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105031916435_linkTablesTogether.cs" />
+    <Compile Include="Migrations\202105031916435_linkTablesTogether.designer.cs">
+      <DependentUpon>202105031916435_linkTablesTogether.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyData\Clearance.cs" />
     <Compile Include="MyData\PostTypesEnum.cs" />
@@ -70,6 +78,7 @@
     <Compile Include="MyData\ProjectPost.cs" />
     <Compile Include="MyData\ProjectStatusEnum.cs" />
     <Compile Include="MyData\StateEnum.cs" />
+    <Compile Include="MyData\StudyYear.cs" />
     <Compile Include="MyData\SystemUser.cs" />
     <Compile Include="MyData\SystemUserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +98,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104252054297_ProjectRelatedStuff.resx">
       <DependentUpon>202104252054297_ProjectRelatedStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104292220531_yearsAddition.resx">
+      <DependentUpon>202104292220531_yearsAddition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105031916435_linkTablesTogether.resx">
+      <DependentUpon>202105031916435_linkTablesTogether.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

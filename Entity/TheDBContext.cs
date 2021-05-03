@@ -10,11 +10,11 @@ namespace Entity
         public DbSet<Clearance> Clearances { get; set; }
         public DbSet<ProjectData> ProjectsData { get; set; }
         public DbSet<ProjectPost> ProjectPosts { get; set; }
-
+        public DbSet<StudyYear> StudyYears { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures many-to-many relationship
-            // modelBuilder.Entity<Clearance>().HasMany(c => c.Groups).WithMany(g => g.Clearances);
+            modelBuilder.Entity<SystemUserGroup>().HasMany(c => c.Clearances).WithMany(x => x.Groups);
         }
     }
 }

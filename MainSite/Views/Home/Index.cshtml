@@ -11,19 +11,19 @@
             @Html.ActionLink("قائمة الصلاحيات", "index", "Clearances", null, new { @class = "myButtonGray" })
             <p></p>
         }
-        if (((List<string>)Session["MyClearance"]).Contains("UserGroups"))
+        if (((List<string>)Session["MyClearance"]).Contains("SystemUserGroups"))
         {
-            @Html.ActionLink("المجموعات", "index", "UserGroups", null, new { @class = "myButtonGray" })
+            @Html.ActionLink("المجموعات", "index", "SystemUserGroups", null, new { @class = "myButtonGray" })
             <p></p>
         }
-        if (((List<string>)Session["MyClearance"]).Contains("Users"))
+        if (((List<string>)Session["MyClearance"]).Contains("SystemUsers"))
         {
-            @Html.ActionLink("المستخدمين", "index", "Users", null, new { @class = "myButtonGray" })
+            @Html.ActionLink("المستخدمين", "index", "SystemUsers", null, new { @class = "myButtonGray" })
             <p></p>
         }
-        if (((List<string>)Session["MyClearance"]).Contains("Students"))
+        if (((List<string>)Session["MyClearance"]).Contains("StudyYears"))
         {
-            @Html.ActionLink("الطلبة", "index", "Students", null, new { @class = "myButtonGray" })
+            @Html.ActionLink("سنين الدراسة", "index", "StudyYears", null, new { @class = "myButtonGray" })
             <p></p>
         }
     }

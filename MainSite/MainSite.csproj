@@ -131,6 +131,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProjectDatasController.cs" />
     <Compile Include="Controllers\ProjectPostsController.cs" />
+    <Compile Include="Controllers\StudyYearsController.cs" />
     <Compile Include="Controllers\SystemUserGroupsController.cs" />
     <Compile Include="Controllers\SystemUsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,6 +206,11 @@
     <Content Include="Views\ProjectPosts\Edit.cshtml" />
     <Content Include="Views\ProjectPosts\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\StudyYears\Create.cshtml" />
+    <Content Include="Views\StudyYears\Delete.cshtml" />
+    <Content Include="Views\StudyYears\Details.cshtml" />
+    <Content Include="Views\StudyYears\Edit.cshtml" />
+    <Content Include="Views\StudyYears\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
