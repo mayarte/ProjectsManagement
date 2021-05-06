@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Entity;
 using Entity.MyData;
+using MainSite.Utilities;
 
 namespace MainSite.Controllers
 {
@@ -18,12 +19,14 @@ namespace MainSite.Controllers
         // GET: SystemUsers
         public ActionResult Index()
         {
+            LoginCheck.Check(this);
             return View(db.Users.ToList());
         }
 
         // GET: SystemUsers/Details/5
         public ActionResult Details(int? id)
         {
+            LoginCheck.Check(this);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +42,7 @@ namespace MainSite.Controllers
         // GET: SystemUsers/Create
         public ActionResult Create()
         {
+            LoginCheck.Check(this);
             return View();
         }
 
@@ -49,6 +53,7 @@ namespace MainSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,Email,Phone,Password")] SystemUser systemUser)
         {
+            LoginCheck.Check(this);
             if (ModelState.IsValid)
             {
                 db.Users.Add(systemUser);
@@ -62,6 +67,7 @@ namespace MainSite.Controllers
         // GET: SystemUsers/Edit/5
         public ActionResult Edit(int? id)
         {
+            LoginCheck.Check(this);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,6 +87,7 @@ namespace MainSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Email,Phone,Password")] SystemUser systemUser)
         {
+            LoginCheck.Check(this);
             if (ModelState.IsValid)
             {
                 db.Entry(systemUser).State = EntityState.Modified;
@@ -93,6 +100,7 @@ namespace MainSite.Controllers
         // GET: SystemUsers/Delete/5
         public ActionResult Delete(int? id)
         {
+            LoginCheck.Check(this);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -110,6 +118,7 @@ namespace MainSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            LoginCheck.Check(this);
             SystemUser systemUser = db.Users.Find(id);
             db.Users.Remove(systemUser);
             db.SaveChanges();

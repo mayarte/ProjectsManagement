@@ -29,10 +29,22 @@ namespace MainSite.Utilities
                 {
                     if (path != "~/Home")
                     {
-                        controller.Response.Redirect("~/Home");
+                        if (!ignoreSession)
+                        {
+                            controller.Response.Redirect("~/Home");
+                        }
                     }
                 }
             }
+        }
+
+        public static Entity.MyData.SystemUser GetLoggedInUser(Controller controller)
+        {
+            if (controller.Session["User"] != null)
+            {
+                return (Entity.MyData.SystemUser)controller.Session["User"];
+            }
+            return null;
         }
     }
 }

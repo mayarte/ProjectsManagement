@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Entity;
 using Entity.MyData;
+using MainSite.Utilities;
 
 namespace MainSite.Controllers
 {
@@ -18,12 +19,14 @@ namespace MainSite.Controllers
         // GET: StudyYears
         public ActionResult Index()
         {
+            LoginCheck.Check(this);
             return View(db.StudyYears.ToList());
         }
 
         // GET: StudyYears/Details/5
         public ActionResult Details(int? id)
         {
+            LoginCheck.Check(this);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +42,7 @@ namespace MainSite.Controllers
         // GET: StudyYears/Create
         public ActionResult Create()
         {
+            LoginCheck.Check(this);
             return View();
         }
 
@@ -49,6 +53,7 @@ namespace MainSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Year1,Year2")] StudyYear studyYear)
         {
+            LoginCheck.Check(this);
             if (ModelState.IsValid)
             {
                 db.StudyYears.Add(studyYear);
@@ -62,6 +67,7 @@ namespace MainSite.Controllers
         // GET: StudyYears/Edit/5
         public ActionResult Edit(int? id)
         {
+            LoginCheck.Check(this);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,6 +87,7 @@ namespace MainSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Year1,Year2")] StudyYear studyYear)
         {
+            LoginCheck.Check(this);
             if (ModelState.IsValid)
             {
                 db.Entry(studyYear).State = EntityState.Modified;
@@ -93,6 +100,7 @@ namespace MainSite.Controllers
         // GET: StudyYears/Delete/5
         public ActionResult Delete(int? id)
         {
+            LoginCheck.Check(this);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -110,6 +118,7 @@ namespace MainSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            LoginCheck.Check(this);
             StudyYear studyYear = db.StudyYears.Find(id);
             db.StudyYears.Remove(studyYear);
             db.SaveChanges();
@@ -118,6 +127,7 @@ namespace MainSite.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            LoginCheck.Check(this);
             if (disposing)
             {
                 db.Dispose();

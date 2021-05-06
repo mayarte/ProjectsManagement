@@ -11,6 +11,7 @@ namespace Entity
         public DbSet<ProjectData> ProjectsData { get; set; }
         public DbSet<ProjectPost> ProjectPosts { get; set; }
         public DbSet<StudyYear> StudyYears { get; set; }
+        public DbSet<ProjectUserLink> ProjectUserLinks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures many-to-many relationship

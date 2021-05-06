@@ -26,6 +26,12 @@
             @Html.ActionLink("سنين الدراسة", "index", "StudyYears", null, new { @class = "myButtonGray" })
             <p></p>
         }
+
+        if (((List<string>)Session["MyClearance"]).Contains("ProposeProject"))
+        {
+            @Html.ActionLink("اقتراح مشروع", "create", "ProposeProject", null, new { @class = "myButtonGray" })
+            <p></p>
+        }
     }
     else
     {

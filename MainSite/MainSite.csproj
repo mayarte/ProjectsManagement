@@ -131,6 +131,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProjectDatasController.cs" />
     <Compile Include="Controllers\ProjectPostsController.cs" />
+    <Compile Include="Controllers\ProposeProjectController.cs" />
     <Compile Include="Controllers\StudyYearsController.cs" />
     <Compile Include="Controllers\SystemUserGroupsController.cs" />
     <Compile Include="Controllers\SystemUsersController.cs" />
@@ -138,6 +139,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginViewContent.cs" />
+    <Compile Include="Models\ProposeProjectContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\LoginCheck.cs" />
   </ItemGroup>
@@ -211,6 +213,7 @@
     <Content Include="Views\StudyYears\Details.cshtml" />
     <Content Include="Views\StudyYears\Edit.cshtml" />
     <Content Include="Views\StudyYears\Index.cshtml" />
+    <Content Include="Views\ProposeProject\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
