@@ -1,4 +1,5 @@
 ﻿using Entity.MyData;
+using MainSite.DataOnly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,10 @@ using System.Web;
 
 namespace MainSite.Models
 {
-    public class ProposeProjectContent
+    public class ProjectListContent
     {
-        public ProjectData ProjectData { get; set; }
+        public List<ProjectListItem> ProjectList { get; set; }
+        public SystemUser CurrentUser { get; set; }
         public string ErrorMsg { get; set; }
-        public int YearID { get; set; }
-        public List<StudyYear> Years { get; set; }
     }
 }

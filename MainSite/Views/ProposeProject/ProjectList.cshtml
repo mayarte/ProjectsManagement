@@ -1,0 +1,101 @@
+﻿@model MainSite.Models.ProjectListContent
+@{
+    ViewBag.Title = "قائمة المشاريع";
+}
+
+<h4>قائمة المشاريع</h4>
+<hr />
+@Html.ValueFor(model => model.ErrorMsg)
+@foreach (var item in Model.ProjectList)
+{
+    <div class="ProjectDiv">
+        <table class="BlueTable">
+            <tr>
+                <td>
+                    اسم المشروع
+                </td>
+                <td>
+                    @Html.ValueFor(model => item.Project.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    مختصر عن المشروع
+                </td>
+                <td>
+                    @Html.ValueFor(model => item.Project.Description)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    تاريخ الاقتراح
+                </td>
+                <td>
+                    @Html.ValueFor(model => item.Project.CreationDate)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    نسبة الاكمال
+                </td>
+                <td>
+                    @Html.ValueFor(model => item.Project.ProgressPercentage)
+                    %
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    حالة المشروع
+                </td>
+                <td>
+                    @Html.ValueFor(model => item.Project.ProjectStatus)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    قائمة المستخدمين ذو الصلة بهذا المشروع
+                    @foreach (var user in item.Users)
+                    {
+                        <table class="BlueTable">
+                            <tr>
+                                <td>
+                                    الاسم
+                                </td>
+                                <td>
+                                    @Html.ValueFor(model => user.User.Name)
+                                </td>
+                                <td>
+                                    نوع الصلة
+                                </td>
+                                <td>
+                                    @Html.ValueFor(model => user.LinkType)
+                                </td>
+                                <td>
+                                    @if (Model.CurrentUser?.ID == user.User.ID)
+                                    {
+                                        @Html.ActionLink("الغاء الصلة", "RemoveMyRelation", "ProposeProject", new { id = user.ID }, new { @class = "myButtonGray" })
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Html.ActionLink("ارغب بالعمل على هذا المشروع", "AddMeToProject", "ProposeProject", new { id = item.Project.ID }, new { @class = "myButtonGray" })
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<br />
+<div>
+    @Html.ActionLink("رجوع للقائمة", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

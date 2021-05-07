@@ -53,10 +53,17 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.9\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -135,10 +142,12 @@
     <Compile Include="Controllers\StudyYearsController.cs" />
     <Compile Include="Controllers\SystemUserGroupsController.cs" />
     <Compile Include="Controllers\SystemUsersController.cs" />
+    <Compile Include="DataOnly\ProjectListItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginViewContent.cs" />
+    <Compile Include="Models\ProjectListContent.cs" />
     <Compile Include="Models\ProposeProjectContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\LoginCheck.cs" />
@@ -156,6 +165,12 @@
     <Content Include="Images\project.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -197,11 +212,6 @@
     <Content Include="Views\SystemUserGroups\Details.cshtml" />
     <Content Include="Views\SystemUserGroups\Edit.cshtml" />
     <Content Include="Views\SystemUserGroups\Index.cshtml" />
-    <Content Include="Views\ProjectDatas\Create.cshtml" />
-    <Content Include="Views\ProjectDatas\Delete.cshtml" />
-    <Content Include="Views\ProjectDatas\Details.cshtml" />
-    <Content Include="Views\ProjectDatas\Edit.cshtml" />
-    <Content Include="Views\ProjectDatas\Index.cshtml" />
     <Content Include="Views\ProjectPosts\Create.cshtml" />
     <Content Include="Views\ProjectPosts\Delete.cshtml" />
     <Content Include="Views\ProjectPosts\Details.cshtml" />
@@ -214,6 +224,12 @@
     <Content Include="Views\StudyYears\Edit.cshtml" />
     <Content Include="Views\StudyYears\Index.cshtml" />
     <Content Include="Views\ProposeProject\Create.cshtml" />
+    <Content Include="Views\ProjectDatas\Create.cshtml" />
+    <Content Include="Views\ProjectDatas\Delete.cshtml" />
+    <Content Include="Views\ProjectDatas\Details.cshtml" />
+    <Content Include="Views\ProjectDatas\Edit.cshtml" />
+    <Content Include="Views\ProjectDatas\Index.cshtml" />
+    <Content Include="Views\ProposeProject\ProjectList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

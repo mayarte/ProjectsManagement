@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - برنامج ادارة وارشفة مشاريع الطلبة</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/MainCss.css?v=10")
+    @Styles.Render("~/Content/MainCss.css?v=20")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -22,11 +22,11 @@
                 <td width="20%">
                     @if (!string.IsNullOrEmpty(ViewBag.LoggeedUserName))
                     {
-                        <div>
-                            <label>تم تسجيل الدخول بواسطة</label>
-                            @ViewBag.LoggeedUserName
-                            @Html.ActionLink("تسجيل خروج", "Logout", "Login", null, new { @class = "myButtonGray" })
-                        </div>
+                    <div>
+                        <label>تم تسجيل الدخول بواسطة :</label> @ViewBag.LoggeedUserName
+                        <br />
+                        @Html.ActionLink("تسجيل خروج", "Logout", "Login", null, new { @class = "myButtonGray" })
+                    </div>
                     }
                 </td>
             </tr>

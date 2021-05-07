@@ -24,11 +24,20 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ProjectData.Description, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ProjectData.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextAreaFor(model => model.ProjectData.Description, new { @class = "MultiLineTextArea" })
             @Html.ValidationMessageFor(model => model.ProjectData.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectData.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.YearID, new SelectList(Model.Years, "ID", ""), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProjectData.Year, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="حفظ المقترح" class="btn btn-default" />

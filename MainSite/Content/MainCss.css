@@ -175,6 +175,10 @@ table.table {
     padding: 3px 23px;
     text-decoration: none;
     text-shadow: 0px -1px 0px #2b665e;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
 }
 
     .myButtonGray:hover {
@@ -191,4 +195,42 @@ table.table {
     .myButtonGray:active {
         position: relative;
         top: 1px;
+    }
+
+.MultiLineTextArea {
+    max-width: 280px;
+    float: left;
+    width: 280px;
+    height: 140px;
+}
+
+.ProjectDiv {
+/*    background: linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);
+    background: -moz-linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);
+    background: -webkit-linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);*/
+    border: 3px solid #636363;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 7px 8px 12px #e8e8e8;
+    direction: rtl;
+}
+
+
+table.BlueTable {
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: solid;
+    color: #000000;
+    text-align: -webkit-right;
+}
+
+    table.BlueTable td, table.customTable th {
+        border-width: 2px;
+        border-color: #7EA8F8;
+        border-style: solid;
+        padding: 5px;
+    }
+
+    table.BlueTable thead {
+        background-color: #7EA8F8;
     }
