@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace MainSite.Controllers
 {
@@ -28,85 +29,6 @@ namespace MainSite.Controllers
         {
             LoginCheck.Check(this);
             return View();
-        }
-
-        // GET: ProposeProject/ProjectList
-        public ActionResult ProjectList()
-        {
-            LoginCheck.Check(this);
-            ProjectListContent ProjectList = new ProjectListContent();
-            var projectList = db.ProjectsData.AsNoTracking().Where(x => x.Status == Entity.MyData.StateEnum.Active).ToList();
-            ProjectList.CurrentUser = LoginCheck.GetLoggedInUser(this);
-            ProjectList.ProjectList = new List<DataOnly.ProjectListItem>();
-            foreach (var item in projectList)
-            {
-                var data = new DataOnly.ProjectListItem();
-                data.Project = item;
-                data.Users = db.ProjectUserLinks
-                    .Include(x => x.User)
-                    .AsNoTracking()
-                    .Where(x => x.Project.ID == item.ID).ToList();
-                ProjectList.ProjectList.Add(data);
-            }
-            return View(ProjectList);
-        }
-
-        //ProposeProject/AddMeToProject
-        public ActionResult AddMeToProject(int id)
-        {
-            LoginCheck.Check(this);
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var currentUser = LoginCheck.GetLoggedInUser(this);
-                    var user = db.Users.FirstOrDefault(x => x.ID == currentUser.ID);
-                    var project = db.ProjectsData.FirstOrDefault(x => x.ID == id);
-                    
-                    var dbLink = db.ProjectUserLinks
-                        .Include(x => x.Project)
-                        .Include(x => x.User)
-                        .AsNoTracking().FirstOrDefault(x => x.Project.ID == id && x.User.ID == currentUser.ID && x.LinkType == Entity.MyData.ProjectLinkEnum.Working);
-                    if (dbLink != null)
-                    {
-                        return RedirectToAction("ProjectList");
-                    }
-
-                    var link = new Entity.MyData.ProjectUserLink()
-                    {
-                        LinkType = Entity.MyData.ProjectLinkEnum.Working,
-                        Project = project,
-                        User = user
-                    };
-                    db.ProjectUserLinks.Add(link);
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex);
-                }
-            }
-            return RedirectToAction("ProjectList");
-        }
-
-        //ProposeProject/RemoveMyRelation
-        public ActionResult RemoveMyRelation(int id)
-        {
-            LoginCheck.Check(this);
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var link = db.ProjectUserLinks.FirstOrDefault(x => x.ID == id);
-                    db.ProjectUserLinks.Remove(link);
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    logger.Error(ex);
-                }
-            }
-            return RedirectToAction("ProjectList");
         }
 
         // GET: ProposeProject/Create

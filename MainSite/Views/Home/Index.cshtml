@@ -28,8 +28,13 @@
     }
     if (((List<string>)Session["MyClearance"]).Contains("ProjectList"))
     {
-        @Html.ActionLink("قائمة المشاريع", "ProjectList", "ProposeProject", null, new { @class = "myButtonGray" })
+        @Html.ActionLink("قائمة المشاريع", "ProjectList", "Projects", null, new { @class = "myButtonGray" })
     }
+    if (((List<string>)Session["MyClearance"]).Contains("MyProjects"))
+    {
+        @Html.ActionLink("قائمة مشاريعي", "MyProjects", "Projects", null, new { @class = "myButtonGray" })
+    }
+    
 }
 else
 {

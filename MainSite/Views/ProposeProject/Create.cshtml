@@ -5,49 +5,53 @@
 
 @using (Html.BeginForm())
 {
-<div class="form-horizontal">
+<div>
     <h4>اقتراح مشروع جديد</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
     @Html.ValueFor(model => model.ErrorMsg)
-    <br />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.ProjectData.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ProjectData.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ProjectData.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ProjectData.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.ProjectData.Description, new { @class = "MultiLineTextArea" })
-            @Html.ValidationMessageFor(model => model.ProjectData.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ProjectData.Year, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.YearID, new SelectList(Model.Years, "ID", ""), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ProjectData.Year, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-   
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="حفظ المقترح" class="btn btn-default" />
-        </div>
+    <div class="ProjectDiv">
+        <table class="BlueTable">
+            <tr>
+                <td>
+                    اسم المشروع
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ProjectData.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProjectData.Name, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    مختصر عن المشروع
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => model.ProjectData.Description, new { @class = "MultiLineTextArea" })
+                    @Html.ValidationMessageFor(model => model.ProjectData.Description, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    السنة الدراسية
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.YearID, new SelectList(Model.Years, "ID", ""), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectData.Year, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="حفظ المقترح" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("رجوع للقائمة", "Index")
+    @Html.ActionLink("رجوع للقائمة", "Index", null, new { @class = "myButtonGray" })
 </div>
 
 @section Scripts {

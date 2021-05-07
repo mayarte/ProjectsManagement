@@ -138,6 +138,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProjectDatasController.cs" />
     <Compile Include="Controllers\ProjectPostsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProposeProjectController.cs" />
     <Compile Include="Controllers\StudyYearsController.cs" />
     <Compile Include="Controllers\SystemUserGroupsController.cs" />
@@ -146,9 +147,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LinkUserToGroupContent.cs" />
     <Compile Include="Models\LoginViewContent.cs" />
     <Compile Include="Models\ProjectListContent.cs" />
     <Compile Include="Models\ProposeProjectContent.cs" />
+    <Compile Include="Models\ShowProjectContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\LoginCheck.cs" />
   </ItemGroup>
@@ -229,7 +232,10 @@
     <Content Include="Views\ProjectDatas\Details.cshtml" />
     <Content Include="Views\ProjectDatas\Edit.cshtml" />
     <Content Include="Views\ProjectDatas\Index.cshtml" />
-    <Content Include="Views\ProposeProject\ProjectList.cshtml" />
+    <Content Include="Views\SystemUsers\AddToGroup.cshtml" />
+    <Content Include="Views\Projects\ProjectList.cshtml" />
+    <Content Include="Views\Projects\MyProjects.cshtml" />
+    <Content Include="Views\Projects\ShowProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

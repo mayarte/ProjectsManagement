@@ -23,7 +23,11 @@
                     @if (!string.IsNullOrEmpty(ViewBag.LoggeedUserName))
                     {
                     <div>
-                        <label>تم تسجيل الدخول بواسطة :</label> @ViewBag.LoggeedUserName
+                        <label>تم تسجيل الدخول بواسطة :</label>
+                        @ViewBag.LoggeedUserName
+                        <br />
+                        <label>احد اعضاء مجموعة :</label>
+                        @ViewBag.LoggeedUserNameGroup
                         <br />
                         @Html.ActionLink("تسجيل خروج", "Logout", "Login", null, new { @class = "myButtonGray" })
                     </div>

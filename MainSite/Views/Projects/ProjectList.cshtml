@@ -84,6 +84,7 @@
             <tr>
                 <td colspan="2">
                     @Html.ActionLink("ارغب بالعمل على هذا المشروع", "AddMeToProject", "ProposeProject", new { id = item.Project.ID }, new { @class = "myButtonGray" })
+                    @Html.ActionLink("عرض تفاصيل المشروع", "ShowProject", "ProposeProject", new { id = item.Project.ID }, new { @class = "myButtonGray" })
                 </td>
             </tr>
         </table>
@@ -91,7 +92,7 @@
 }
 <br />
 <div>
-    @Html.ActionLink("رجوع للقائمة", "Index")
+    @Html.ActionLink("رجوع للقائمة", "Index", null, new { @class = "myButtonGray" })
 </div>
 
 @section Scripts {

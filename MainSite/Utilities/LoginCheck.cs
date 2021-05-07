@@ -24,6 +24,7 @@ namespace MainSite.Utilities
                 if (myClearance.Contains(path.Split('/')[1]))
                 {
                     controller.ViewBag.LoggeedUserName = ((Entity.MyData.SystemUser)controller.Session["User"]).Name;
+                    controller.ViewBag.LoggeedUserNameGroup = ((Entity.MyData.SystemUser)controller.Session["User"]).ClearanceGroup.Name;
                 }
                 else
                 {

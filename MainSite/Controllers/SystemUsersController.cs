@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Entity;
 using Entity.MyData;
+using MainSite.Models;
 using MainSite.Utilities;
 
 namespace MainSite.Controllers
@@ -123,6 +124,58 @@ namespace MainSite.Controllers
             db.Users.Remove(systemUser);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        // GET: SystemUsers/Edit/5
+        public ActionResult AddToGroup(int? id)
+        {
+            LoginCheck.Check(this);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var content = new LinkUserToGroupContent();
+
+            content.User = db.Users.AsNoTracking()
+                .Include(x => x.ClearanceGroup).FirstOrDefault(x => x.ID == id);
+
+            if (content.User == null)
+            {
+                return HttpNotFound();
+            }
+            if(content.User.ClearanceGroup!=null)
+            {
+                content.GroupID = content.User.ClearanceGroup.ID;
+            }
+            content.Groups = db.Groups.AsNoTracking().ToList();
+
+            return View(content);
+        }
+
+        // POST: SystemUsers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToGroup(LinkUserToGroupContent content)
+        {
+            LoginCheck.Check(this);
+            if (ModelState.IsValid)
+            {
+                var user = db.Users
+                    .Include(x => x.ClearanceGroup)
+                    .FirstOrDefault(x => x.ID == content.User.ID);
+
+                var group = db.Groups
+                   .FirstOrDefault(x => x.ID == content.GroupID);
+                user.ClearanceGroup = group;
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            content.Groups = db.Groups.AsNoTracking().ToList();
+            return View(content);
         }
 
         protected override void Dispose(bool disposing)
