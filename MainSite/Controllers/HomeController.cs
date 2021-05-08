@@ -18,14 +18,12 @@ namespace MainSite.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
             LoginCheck.Check(this, true);
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
             LoginCheck.Check(this, true);
             return View();
         }

@@ -17,5 +17,7 @@ namespace MainSite.Models
 
         public int YearID { get; set; }
         public List<StudyYear> Years { get; set; }
+
+        public string UploadPath { get; set; }
     }
 }

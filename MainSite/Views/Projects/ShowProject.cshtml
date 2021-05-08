@@ -96,8 +96,80 @@
             </table>
         }
     </div>
+    <div class="ProjectDiv">
+        @if (((List<string>)Session["MyClearance"]).Contains("AddPost"))
+        {
+            @Html.ActionLink("اضافة منشور", "AddPost", "Projects", new { id = Model.Project.ID }, new { @class = "myButtonGray" })
+        }
+        <p></p>
+        @foreach (var pst in Model.Posts)
+        {
+            <div class="ProjectDiv">
+                <table class="BlueTable">
+                    <tr>
+                        <td colspan="6">
+                            @switch (pst.PostType)
+                            {
+                                case Entity.MyData.PostTypesEnum.Text:
+                                    @Html.ValueFor(model => pst.Text)
+                                    break;
+                                case Entity.MyData.PostTypesEnum.Image:
+                                    <img src="@Url.Content(Model.UploadPath+pst.Text)" alt="IMAGES" width="400" height="300" />
+                                    break;
+                                case Entity.MyData.PostTypesEnum.YouTubeLink:
+                                    @(new HtmlString(@pst.Text))
+                                    break;
+                                case Entity.MyData.PostTypesEnum.WebLink:
+                                    <a href="@pst.Text" target="_blank">Link</a>
+                                    break;
+                                case Entity.MyData.PostTypesEnum.File:
+                                    <a href="@Url.Content(Model.UploadPath+pst.Text)">Download</a>
+                                    break;
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            معلومات اضافية
+                        </td>
+                        <td colspan="5">
+                            @Html.ValueFor(model => pst.MoreInfo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            نشر بواسطة
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => pst.PostedBy.Name)
+                        </td>
+                        <td>
+                            تاريخ النشر
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => pst.CreationDate)
+                        </td>
+                        <td>
+                            تاريخ اخر تعديل
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => pst.LastUpdateTime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            تعديل
+                        </td>
+                        <td colspan="3">
+                            حذف
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
     <br />
-    @Html.ActionLink("رجوع الى قائمة المشاريع", "ProjectList", "ProposeProject", null, new { @class = "myButtonGray" })
-    @Html.ActionLink("رجوع الى قائمة مشاريعي", "MyProjects", "ProposeProject", null, new { @class = "myButtonGray" })
+    @Html.ActionLink("رجوع الى قائمة المشاريع", "ProjectList", "Projects", null, new { @class = "myButtonGray" })
+    @Html.ActionLink("رجوع الى قائمة مشاريعي", "MyProjects", "Projects", null, new { @class = "myButtonGray" })
 }
 

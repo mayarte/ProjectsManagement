@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Optimization;
 
 namespace MainSite
@@ -23,13 +24,9 @@ namespace MainSite
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      $"~/Content/bootstrap.css?v={DateTime.Now.ToString("yyyyMMddhhmmss")}",
+                      $"~/Content/site.css?v={DateTime.Now.ToString("yyyyMMddhhmmss")}"));
 
-
-            bundles.Add(new StyleBundle("~/Styles/css").Include(
-                      "~/Styles/bootstrap.css",
-                      "~/Styles/site.css"));
         }
     }
 }

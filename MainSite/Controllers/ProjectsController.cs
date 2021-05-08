@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.IO;
 
 namespace MainSite.Controllers
 {
@@ -131,14 +132,23 @@ namespace MainSite.Controllers
         public ActionResult ShowProject(int id)
         {
             LoginCheck.Check(this);
+
             var showProjectContent = new ShowProjectContent();
-            showProjectContent.Project = db.ProjectsData.AsNoTracking().FirstOrDefault(x => x.Status == Entity.MyData.StateEnum.Active && x.ID == id);
+            showProjectContent.Project = db.ProjectsData.AsNoTracking()
+                .Include(x => x.Year)
+                .FirstOrDefault(x => x.Status == Entity.MyData.StateEnum.Active && x.ID == id);
             showProjectContent.CurrentUser = LoginCheck.GetLoggedInUser(this);
             showProjectContent.Links = db.ProjectUserLinks
                         .Include(x => x.Project)
                         .Include(x => x.User)
                         .AsNoTracking().Where(x => x.Project.ID == id).ToList();
             showProjectContent.Years = db.StudyYears.ToList();
+            showProjectContent.YearID = showProjectContent.Project.Year != null ? showProjectContent.Project.Year.ID : 0;
+            showProjectContent.Posts = db.ProjectPosts.AsNoTracking()
+                .Include(x => x.Project)
+                .Include(x => x.PostedBy)
+                .Where(x => x.Project.ID == id && x.Status == Entity.MyData.StateEnum.Active).ToList();
+            showProjectContent.UploadPath = System.Configuration.ConfigurationManager.AppSettings["UploadPath"];
             return View(showProjectContent);
         }
 
@@ -166,7 +176,7 @@ namespace MainSite.Controllers
 
                     db.ProjectsData.AddOrUpdate(project);
                     db.SaveChanges();
-                    return RedirectToAction("ShowProject", content.Project.ID);
+                    return RedirectToAction("ShowProject", "Projects", new { id = content.Project.ID });
                 }
                 catch (Exception ex)
                 {
@@ -174,6 +184,7 @@ namespace MainSite.Controllers
                     content.ErrorMsg = "حدث خطا في خزن البيانات";
                 }
             }
+            content.YearID = content.Project.Year != null ? content.Project.Year.ID : 0;
             content.Years = db.StudyYears.ToList();
             return View(content);
         }
@@ -196,6 +207,85 @@ namespace MainSite.Controllers
                 }
             }
             return RedirectToAction("Projects");
+        }
+
+        // GET: Projects/AddPost
+        public ActionResult AddPost(int id)
+        {
+            LoginCheck.Check(this);
+            var post = new PostContent();
+            post.Post = new Entity.MyData.ProjectPost();
+            post.Project = db.ProjectsData.AsNoTracking().FirstOrDefault(x => x.ID == id);
+            return View(post);
+        }
+
+        // POST: Projects/AddPost
+        [HttpPost]
+        public ActionResult AddPost(PostContent postContent)
+        {
+            LoginCheck.Check(this);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Server.MapPath("~/UploadedData")
+                    var UploadedData = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UploadPath"]);
+                    switch (postContent.Post.PostType)
+                    {
+                        case Entity.MyData.PostTypesEnum.Select_Type:
+                            postContent.ErrorMsg = "الرجاء اختيار نوع المنشور";
+                            int? projId = postContent.Project.ID;
+                            return View(postContent);
+                        case Entity.MyData.PostTypesEnum.Image:
+                            if (postContent.ImageUpload.ContentLength > 0)
+                            {
+                                var name = Guid.NewGuid().ToString() + Path.GetExtension(postContent.ImageUpload.FileName);
+                                var dir = new DirectoryInfo(UploadedData);
+                                if (!dir.Exists) dir.Create();
+                                string path = Path.Combine(dir.FullName, name);
+                                postContent.ImageUpload.SaveAs(path);
+                                postContent.Post.Text = name;
+                            }
+                            break;
+                        case Entity.MyData.PostTypesEnum.File:
+                            if (postContent.FileUpload.ContentLength > 0)
+                            {
+                                var name = Guid.NewGuid().ToString() + Path.GetExtension(postContent.FileUpload.FileName);
+                                var dir = new DirectoryInfo(UploadedData);
+                                if (!dir.Exists) dir.Create();
+                                string path = Path.Combine(dir.FullName, name);
+                                postContent.FileUpload.SaveAs(path);
+                                postContent.Post.Text = name;
+                            }
+                            break;
+                        case Entity.MyData.PostTypesEnum.Text:
+                            break;
+                        case Entity.MyData.PostTypesEnum.WebLink:
+                            postContent.Post.Text = postContent.WebLink;
+                            break;
+                        case Entity.MyData.PostTypesEnum.YouTubeLink:
+                            postContent.Post.Text = postContent.YouTubeLink;
+                            break;
+                    }
+                    var CurrentUser = LoginCheck.GetLoggedInUser(this);
+
+                    postContent.Post.PostedBy = db.Users.FirstOrDefault(x => x.ID == CurrentUser.ID);
+                    postContent.Post.Project = db.ProjectsData.FirstOrDefault(x => x.ID == postContent.Project.ID);
+                    postContent.Post.LastUpdateTime = DateTime.Now;
+                    postContent.Post.CreationDate = DateTime.Now;
+
+                    db.ProjectPosts.Add(postContent.Post);
+                    db.SaveChanges();
+                    return RedirectToAction("ShowProject", "Projects", new { id = postContent.Post.Project.ID });
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    postContent.ErrorMsg = "حدث خطا في خزن البيانات";
+                }
+            }
+
+            return View(postContent);
         }
     }
 }

@@ -73,7 +73,7 @@
                                 <td>
                                     @if (Model.CurrentUser?.ID == user.User.ID)
                                     {
-                                        @Html.ActionLink("الغاء الصلة", "RemoveMyRelation", "ProposeProject", new { id = user.ID }, new { @class = "myButtonGray" })
+                                        @Html.ActionLink("الغاء الصلة", "RemoveMyRelation", "Projects", new { id = user.ID }, new { @class = "myButtonGray" })
                                     }
                                 </td>
                             </tr>
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                     @Html.ActionLink("عرض تفاصيل المشروع", "ShowProject", "ProposeProject", new { id = item.Project.ID }, new { @class = "myButtonGray" })
+                     @Html.ActionLink("عرض تفاصيل المشروع", "ShowProject", "Projects", new { id = item.Project.ID }, new { @class = "myButtonGray" })
                 </td>
             </tr>
         </table>

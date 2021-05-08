@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="Models\LinkUserToGroupContent.cs" />
     <Compile Include="Models\LoginViewContent.cs" />
+    <Compile Include="Models\PostContent.cs" />
     <Compile Include="Models\ProjectListContent.cs" />
     <Compile Include="Models\ProposeProjectContent.cs" />
     <Compile Include="Models\ShowProjectContent.cs" />
@@ -236,9 +237,11 @@
     <Content Include="Views\Projects\ProjectList.cshtml" />
     <Content Include="Views\Projects\MyProjects.cshtml" />
     <Content Include="Views\Projects\ShowProject.cshtml" />
+    <Content Include="Views\Projects\AddPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
