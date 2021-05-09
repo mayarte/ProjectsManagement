@@ -4,7 +4,10 @@
 (2020,2021),
 (2021,2022),
 (2022,2023),
-(2023,2024);
+(2023,2024),
+(2024,2025),
+(2025,2026),
+(2026,2027);
 
 insert into Clearances (Name) values 
 ('Clearances'),
@@ -56,4 +59,7 @@ insert into SystemUserGroupClearances(SystemUserGroup_ID,Clearance_ID) values
 (3,8),
 (3,9),
 (3,10),
-(3,11);
+(3,11),
+(3,12),
+(3,13),
+(3,14);
