@@ -11,7 +11,7 @@
     <div class="ProjectDiv">
         <table class="BlueTable">
             <tr>
-                <td>
+                <td class="SkyTD">
                     اسم المشروع
                 </td>
                 <td>
@@ -19,7 +19,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     مختصر عن المشروع
                 </td>
                 <td>
@@ -27,7 +27,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     تاريخ الاقتراح
                 </td>
                 <td>
@@ -35,7 +35,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     نسبة الاكمال
                 </td>
                 <td>
@@ -44,7 +44,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     حالة المشروع
                 </td>
                 <td>
@@ -53,19 +53,26 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    قائمة المستخدمين ذو الصلة بهذا المشروع
-                    @foreach (var user in item.Users)
-                    {
-                        <table class="BlueTable">
+                    <table class="BlueTable">
+                        <tr>
+                            <td class="SkyTD" colspan="6">
+                                قائمة المستخدمين ذو الصلة بهذا المشروع
+                            </td>
+                        </tr>
+                        @foreach (var user in item.Users)
+                        {
                             <tr>
-                                <td>
+                                <td class="SkyTD">
                                     الاسم
                                 </td>
                                 <td>
                                     @Html.ValueFor(model => user.User.Name)
                                 </td>
-                                <td>
+                                <td class="SkyTD">
                                     نوع الصلة
+                                </td>
+                                <td>
+                                    @Html.ValueFor(model => user.LinkType)
                                 </td>
                                 <td>
                                     @Html.ValueFor(model => user.LinkType)
@@ -77,13 +84,13 @@
                                     }
                                 </td>
                             </tr>
-                        </table>
-                    }
+                        }
+                    </table>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                     @Html.ActionLink("عرض تفاصيل المشروع", "ShowProject", "Projects", new { id = item.Project.ID }, new { @class = "myButtonGray" })
+                    @Html.ActionLink("عرض تفاصيل المشروع", "ShowProject", "Projects", new { id = item.Project.ID }, new { @class = "myButtonGray" })
                 </td>
             </tr>
         </table>

@@ -238,6 +238,7 @@
     <Content Include="Views\Projects\MyProjects.cshtml" />
     <Content Include="Views\Projects\ShowProject.cshtml" />
     <Content Include="Views\Projects\AddPost.cshtml" />
+    <Content Include="Views\Projects\EditPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

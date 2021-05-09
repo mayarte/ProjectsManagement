@@ -1,6 +1,6 @@
 ﻿@model MainSite.Models.PostContent
 @{
-    ViewBag.Title = "منشور جديد";
+    ViewBag.Title = "تعديل منشور";
 }
 
 <script type="text/javascript">
@@ -38,10 +38,10 @@
         SelectedIndexChanged(document.getElementById('Post_PostType'));
     };
 </script>
-@using (Html.BeginForm("AddPost", "Projects", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditPost", "Projects", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div>
-        <h4>منشور جديد</h4>
+        <h4>تعديل منشور</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.ValueFor(model => model.ErrorMsg)
@@ -56,6 +56,22 @@
                     </td>
                     <td>
                         @Html.ValueFor(model => model.Project.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="SkyTD">
+                        اسم صاحب المشروع
+                    </td>
+                    <td>
+                        @Html.ValueFor(model => model.Post.PostedBy.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="SkyTD">
+                        تاريخ الانشاء
+                    </td>
+                    <td>
+                        @Html.ValueFor(model => model.Post.CreationDate)
                     </td>
                 </tr>
                 <tr>
@@ -164,7 +180,7 @@
 
                 <tr>
                     <td colspan="2">
-                        <input type="submit" value="حفظ المنشور" class="btn btn-default" />
+                        <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
                     </td>
                 </tr>
             </table>

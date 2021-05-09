@@ -205,13 +205,17 @@ table.table {
 }
 
 .ProjectDiv {
-/*    background: linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);
+    /*    background: linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);
     background: -moz-linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);
     background: -webkit-linear-gradient(0deg, #c3d2fa 37%,#d4d2d9 57%);*/
     border: 3px solid #636363;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 7px 8px 12px #e8e8e8;
     direction: rtl;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-right: 4px;
+    margin-left: 13px;
 }
 
 
@@ -222,6 +226,10 @@ table.BlueTable {
     border-style: solid;
     color: #000000;
     text-align: -webkit-right;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    margin-left: 4px;
 }
 
     table.BlueTable td, table.customTable th {
@@ -234,3 +242,7 @@ table.BlueTable {
     table.BlueTable thead {
         background-color: #7EA8F8;
     }
+
+.SkyTD {
+    background-color: lightskyblue;
+}

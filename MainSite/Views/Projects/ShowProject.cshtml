@@ -5,26 +5,58 @@
 
 <h2>@Model.Project.Name</h2>
 
-
 @using (Html.BeginForm())
 {
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.ValueFor(model => model.ErrorMsg)
     @Html.HiddenFor(x => x.Project.ID);
+
+    @Html.ActionLink("رجوع الى قائمة المشاريع", "ProjectList", "Projects", null, new { @class = "myButtonGray" })
+    @Html.ActionLink("رجوع الى قائمة مشاريعي", "MyProjects", "Projects", null, new { @class = "myButtonGray" })
+    if (((List<string>)Session["MyClearance"]).Contains("AddPost"))
+    {
+        @Html.ActionLink("اضافة منشور", "AddPost", "Projects", new { id = Model.Project.ID }, new { @class = "myButtonGray" })
+    }
     <div class="ProjectDiv">
         <table class="BlueTable">
             <tr>
-                <td>
+                <td class="SkyTD">
                     اسم المشروع
                 </td>
                 <td>
                     @Html.EditorFor(model => model.Project.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Project.Name, "", new { @class = "text-danger" })
                 </td>
+                <td rowspan="7">
+                    <table class="BlueTable">
+                        <tr>
+                            <td class="SkyTD" colspan="4">
+                                قائمة المستخدمين ذو الصلة بهذا المشروع
+                            </td>
+                        </tr>
+                        @foreach (var user in Model.Links)
+                        {
+                            <tr>
+                                <td class="SkyTD">
+                                    الاسم
+                                </td>
+                                <td>
+                                    @Html.ValueFor(model => user.User.Name)
+                                </td>
+                                <td class="SkyTD">
+                                    نوع الصلة
+                                </td>
+                                <td>
+                                    @Html.ValueFor(model => user.LinkType)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     مختصر عن المشروع
                 </td>
                 <td>
@@ -33,7 +65,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     السنة الدراسية
                 </td>
                 <td>
@@ -42,16 +74,17 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     نسبة الانجاز
                 </td>
                 <td>
                     @Html.EditorFor(model => model.Project.ProgressPercentage, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Project.ProgressPercentage, "", new { @class = "text-danger" })
+                    %
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     حالة المشروع
                 </td>
                 <td>
@@ -60,7 +93,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="SkyTD">
                     حالة القيد
                 </td>
                 <td>
@@ -74,40 +107,14 @@
                 </td>
             </tr>
         </table>
-
-        قائمة المستخدمين ذو الصلة بهذا المشروع
-        @foreach (var user in Model.Links)
-        {
-            <table class="BlueTable">
-                <tr>
-                    <td>
-                        الاسم
-                    </td>
-                    <td>
-                        @Html.ValueFor(model => user.User.Name)
-                    </td>
-                    <td>
-                        نوع الصلة
-                    </td>
-                    <td>
-                        @Html.ValueFor(model => user.LinkType)
-                    </td>
-                </tr>
-            </table>
-        }
     </div>
     <div class="ProjectDiv">
-        @if (((List<string>)Session["MyClearance"]).Contains("AddPost"))
-        {
-            @Html.ActionLink("اضافة منشور", "AddPost", "Projects", new { id = Model.Project.ID }, new { @class = "myButtonGray" })
-        }
-        <p></p>
         @foreach (var pst in Model.Posts)
         {
             <div class="ProjectDiv">
                 <table class="BlueTable">
                     <tr>
-                        <td colspan="6">
+                        <td colspan="6" class="SkyTD">
                             @switch (pst.PostType)
                             {
                                 case Entity.MyData.PostTypesEnum.Text:
@@ -129,7 +136,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="SkyTD">
                             معلومات اضافية
                         </td>
                         <td colspan="5">
@@ -137,19 +144,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="SkyTD">
                             نشر بواسطة
                         </td>
                         <td>
                             @Html.ValueFor(model => pst.PostedBy.Name)
                         </td>
-                        <td>
+                        <td class="SkyTD">
                             تاريخ النشر
                         </td>
                         <td>
                             @Html.ValueFor(model => pst.CreationDate)
                         </td>
-                        <td>
+                        <td class="SkyTD">
                             تاريخ اخر تعديل
                         </td>
                         <td>
@@ -157,11 +164,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            تعديل
-                        </td>
-                        <td colspan="3">
-                            حذف
+                        <td colspan="6" class="SkyTD">
+                            @if (Model.CurrentUser.ID == pst.PostedBy.ID)
+                            {
+                                if (((List<string>)Session["MyClearance"]).Contains("EditPost"))
+                                {
+                                    @Html.ActionLink("تعديل", "EditPost", "Projects", new { id = pst.ID }, new { @class = "myButtonGray" })
+                                }
+                                if (((List<string>)Session["MyClearance"]).Contains("DeletePost"))
+                                {
+                                    @Html.ActionLink("حذف", "DeletePost", "Projects", new { id = pst.ID }, new { @class = "myButtonGray", onclick = "return confirm('Are you sure you wish to delete this article?');" })
+                                }
+                            }
                         </td>
                     </tr>
                 </table>
@@ -171,5 +185,9 @@
     <br />
     @Html.ActionLink("رجوع الى قائمة المشاريع", "ProjectList", "Projects", null, new { @class = "myButtonGray" })
     @Html.ActionLink("رجوع الى قائمة مشاريعي", "MyProjects", "Projects", null, new { @class = "myButtonGray" })
+    if (((List<string>)Session["MyClearance"]).Contains("AddPost"))
+    {
+        @Html.ActionLink("اضافة منشور", "AddPost", "Projects", new { id = Model.Project.ID }, new { @class = "myButtonGray" })
+    }
 }
 
