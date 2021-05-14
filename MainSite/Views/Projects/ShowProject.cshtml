@@ -14,7 +14,7 @@
 
     @Html.ActionLink("رجوع الى قائمة المشاريع", "ProjectList", "Projects", null, new { @class = "myButtonGray" })
     @Html.ActionLink("رجوع الى قائمة مشاريعي", "MyProjects", "Projects", null, new { @class = "myButtonGray" })
-    if (((List<string>)Session["MyClearance"]).Contains("AddPost"))
+    if (((List<string>)Session["MyClearance"]).Contains("AddPost") && Model.Project.ProjectStatus != Entity.MyData.ProjectStatusEnum.Completed)
     {
         @Html.ActionLink("اضافة منشور", "AddPost", "Projects", new { id = Model.Project.ID }, new { @class = "myButtonGray" })
     }
@@ -101,11 +101,14 @@
                     @Html.ValidationMessageFor(model => model.Project.Status, "", new { @class = "text-danger" })
                 </td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
-                </td>
-            </tr>
+            @if (Model.Links.Any(x => x.LinkType == Entity.MyData.ProjectLinkEnum.Proposing && x.User.ID == Model.CurrentUser.ID))
+            {
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
+                    </td>
+                </tr>
+            }
         </table>
     </div>
     <div class="ProjectDiv">
@@ -165,7 +168,7 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="SkyTD">
-                            @if (Model.CurrentUser.ID == pst.PostedBy.ID)
+                            @if (Model.CurrentUser.ID == pst.PostedBy.ID && Model.Project.ProjectStatus != Entity.MyData.ProjectStatusEnum.Completed)
                             {
                                 if (((List<string>)Session["MyClearance"]).Contains("EditPost"))
                                 {
@@ -185,7 +188,7 @@
     <br />
     @Html.ActionLink("رجوع الى قائمة المشاريع", "ProjectList", "Projects", null, new { @class = "myButtonGray" })
     @Html.ActionLink("رجوع الى قائمة مشاريعي", "MyProjects", "Projects", null, new { @class = "myButtonGray" })
-    if (((List<string>)Session["MyClearance"]).Contains("AddPost"))
+    if (((List<string>)Session["MyClearance"]).Contains("AddPost") && Model.Project.ProjectStatus != Entity.MyData.ProjectStatusEnum.Completed)
     {
         @Html.ActionLink("اضافة منشور", "AddPost", "Projects", new { id = Model.Project.ID }, new { @class = "myButtonGray" })
     }
